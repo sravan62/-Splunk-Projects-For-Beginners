@@ -80,3 +80,64 @@ Enter the following query to retrieve DNS logs:
 ```
 index=main sourcetype=dns_logs
 ```
+### 2. Identify Top DNS Clients
+
+Find which systems are generating the highest number of DNS requests.
+
+```
+index=main sourcetype=dns_logs
+| stats count by src_ip
+| sort -count
+```
+
+**This helps identify:**
+
+- High-traffic hosts
+- Potentially infected machines generating excessive DNS requests
+
+### 3. Analyze Top Queried Domains 
+
+Identify the most frequently requested domains in the network.
+
+```
+index=main sourcetype=dns_logs
+| stats count by query
+| sort -count
+```
+
+**This helps:**
+
+- Understand user behavior
+- Detect suspicious or unusual domains
+
+### 4. Detect Suspicious Queries
+
+Search for malformed or unusual DNS queries.
+
+```
+index=main sourcetype=dns_logs query="*\x00*"
+```
+
+**These queries may indicate:**
+
+- Malformed packets
+- Scanning activity
+- Potential exploitation attempts
+
+### 5. Analyze Broadcast Traffic
+
+Identify DNS or NetBIOS broadcast traffic in the network.
+
+```
+index=main sourcetype=dns_logs dest_ip=192.168.202.255
+```
+
+**This helps detect:**
+
+- Network discovery activity
+- Internal scanning behavior
+- Misconfigured systems
+
+**Conclusion**
+
+Analyzing DNS logs in Splunk SIEM enables the identification of unusual network activity, detection of suspicious queries, and effective monitoring of DNS traffic patterns. This approach plays a crucial role in uncovering potential threats such as malware communication, network scanning, and system misconfigurations.
