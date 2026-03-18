@@ -1,87 +1,87 @@
-FTP Log Analysis & Threat Detection Using Splunk
-📌 Introduction
+#  FTP Log Analysis & Threat Detection Using Splunk
+
+##  Introduction
 
 FTP (File Transfer Protocol) logs are crucial for monitoring file transfers, user activity, and potential security threats within a network. By analyzing FTP logs, security analysts can detect suspicious behaviors such as unauthorized access, malware file transfers, brute force attempts, and abnormal file operations.
 
 Using Splunk, we can efficiently ingest, search, and analyze FTP logs to uncover anomalies and gain actionable security insights.
 
-⚙️ Prerequisites
+---
+
+##  Prerequisites
 
 Before starting the analysis, make sure:
 
-Splunk is installed and running
+- Splunk is installed and running  
+- FTP log sources are available (log files or live logs)  
+- Basic understanding of FTP log fields (IP, commands, status codes, etc.)  
 
-FTP log sources are available (log files or live logs)
+---
 
-Basic understanding of FTP log fields (IP, commands, status codes, etc.)
+##  Uploading FTP Log Data into Splunk
 
-📥 Uploading FTP Log Data into Splunk
-1. Prepare FTP Log Files
+### 1. Prepare FTP Log Files
 
-Collect sample FTP log files (e.g., .log or .txt format)
+- Collect sample FTP log files (e.g., `.log` or `.txt` format)  
+- Ensure logs include:
+  - Source IP  
+  - Destination IP  
+  - Username  
+  - FTP Commands (RETR, STOR, DELE, PORT, PASV)  
+  - File paths / URLs  
+  - Status codes  
+  - Server responses  
+- Store the files in a location accessible to Splunk  
 
-Ensure logs include:
+---
 
-Source IP
+### 2. Add Data to Splunk
 
-Destination IP
+- Log in to the Splunk Web interface  
+- Go to **Settings → Add Data**  
+- Choose **Upload** as the data input method  
 
-Username
+---
 
-FTP Commands (RETR, STOR, DELE, PORT, PASV)
+### 3. Select the Log File
 
-File paths / URLs
+- Click **Select File**  
+- Upload the prepared FTP log file  
 
-Status codes
+---
 
-Server responses
+### 4. Configure Source Type
 
-Store the files in a location accessible to Splunk.
+- Assign the correct source type:
+  - Example: `ftp_logs`  
+- Or create a custom source type if needed  
 
-2. Add Data to Splunk
+---
 
-Log in to the Splunk Web interface
-
-Go to Settings → Add Data
-
-Choose Upload as the data input method
-
-3. Select the Log File
-
-Click Select File
-
-Upload the prepared FTP log file
-
-4. Configure Source Type
-
-Assign the correct source type:
-
-Example: ftp_logs
-
-Or create a custom source type if needed
-
-5. Review Configuration
+### 5. Review Configuration
 
 Verify the following settings:
 
-Index (e.g., main)
+- Index (e.g., `main`)  
+- Host  
+- Source Type  
 
-Host
+Ensure they correctly match your log format  
 
-Source Type
+---
 
-Ensure they correctly match your log format.
+### 6. Upload the Data
 
-6. Upload the Data
+- Click **Review**  
+- Confirm all configurations  
+- Click **Submit** to ingest the logs into Splunk  
 
-Click Review
+---
 
-Confirm all configurations
+### 7. Validate Data Ingestion
 
-Click Submit to ingest the logs into Splunk
+- Go to the **Search & Reporting** section and run:
 
-7. Validate Data Ingestion
-
-Go to the Search & Reporting section and run:
-
+```
 index=main sourcetype=ftp_logs
+```
