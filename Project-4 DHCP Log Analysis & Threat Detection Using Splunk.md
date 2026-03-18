@@ -63,11 +63,11 @@ Use the following Splunk search query:
 index=main sourcetype=dhcp_logs
 ```
 ### Steps to Analyze DHCP Log Files in Splunk SIEM
-1. Search for DHCP Events
+## 1. Search for DHCP Events
 ```
 index=main sourcetype=dhcp_logs
 ```
-3. Identify Devices on the Network
+## 2. Identify Devices on the Network
 ```
 index=main sourcetype=dhcp_logs
 | stats count by mac_address, assigned_ip
@@ -75,7 +75,7 @@ index=main sourcetype=dhcp_logs
 - Tracks devices connecting to the network
 - Helps identify unknown or suspicious devices
 
-3. Track IP Address Assignments
+## 3. Track IP Address Assignments
 ```
 index=main sourcetype=dhcp_logs
 | stats count by assigned_ip, mac_address
@@ -83,7 +83,7 @@ index=main sourcetype=dhcp_logs
 - Maps devices to IP addresses
 - Monitors asset activity
 
-4. Detect IP Conflicts
+## 4. Detect IP Conflicts
 ```
 index=main sourcetype=dhcp_logs
 | stats dc(mac_address) as unique_macs by assigned_ip
@@ -92,7 +92,7 @@ index=main sourcetype=dhcp_logs
 - Detects multiple MAC addresses assigned the same IP
 - Useful to identify spoofing or misconfiguration
 
-5. Detect Rogue Devices (High Activity)
+## 5. Detect Rogue Devices (High Activity)
 ```
 index=main sourcetype=dhcp_logs
 | stats count by mac_address
@@ -101,14 +101,14 @@ index=main sourcetype=dhcp_logs
 - Identifies devices requesting IPs frequently
 - Can indicate DHCP starvation attacks
 
-6. Detect Rogue DHCP Servers
+## 6. Detect Rogue DHCP Servers
 ```
 index=main sourcetype=dhcp_logs
 | stats count by server_ip
 ```
 - Identifies unauthorized DHCP servers in the network
 
-7. Track Activity Trends
+## 7. Track Activity Trends
 ```
 index=main sourcetype=dhcp_logs
 | timechart count
