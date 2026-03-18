@@ -96,6 +96,7 @@ Run:
 ```
 index=main sourcetype=ftp_logs
 ```
+---
 ### 2. Identify Top FTP Clients (Source IPs)
 
 Find which systems are generating the most FTP activity.
@@ -107,7 +108,7 @@ index=main sourcetype=ftp_logs
 This helps identify:
 - High-traffic clients
 - Potential attackers or compromised systems
-
+---
 ### 3. Analyze FTP Commands Usage
 
 Identify the most frequently used FTP commands.
@@ -119,7 +120,7 @@ index=main sourcetype=ftp_logs
 This helps:
 - Understand user behavior
 - Detect abnormal command usage
-
+---
 ### 4. Detect Suspicious File Downloads
 
 Search for executable file downloads.
@@ -130,7 +131,7 @@ index=main sourcetype=ftp_logs command=RETR
 These may indicate:
 - Malware downloads
 - Unauthorized file access
-
+---
 ### 5. Detect Suspicious File Uploads
 
 Identify file upload attempts.
@@ -141,7 +142,7 @@ index=main sourcetype=ftp_logs command=STOR
 This helps detect:
 - Unauthorized uploads
 - Hidden or suspicious files (e.g., .ftpduBnga4)
-
+---
 ### 6. Detect Unauthorized or Anonymous Access
 ```
 index=main sourcetype=ftp_logs user=anonymous
@@ -150,7 +151,7 @@ index=main sourcetype=ftp_logs user=anonymous
 This helps identify:
 - Weak authentication configurations
 - Unauthorized access attempts
-
+---
 ### 7. Analyze Failed Operations
 
 Detect failed FTP operations using status codes.
@@ -163,7 +164,7 @@ This helps detect:
 - Brute force attempts
 - Unauthorized file access
 - Attack behavior
-
+---
 ### 8. Detect Access to Sensitive Directories
 ```
 index=main sourcetype=ftp_logs
@@ -172,7 +173,7 @@ index=main sourcetype=ftp_logs
 This helps detect:
 - Directory traversal attempts
 - Access to sensitive system paths
-
+---
 ### 9. Analyze FTP Mode Usage (PORT & PASV)
 ```
 index=main sourcetype=ftp_logs command=PASV OR command=PORT
